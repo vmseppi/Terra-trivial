@@ -1,133 +1,183 @@
-import React, { useContext } from 'react';
-import { Box, Typography, Button } from '@mui/material';
-import { DataContext } from "../context/DataContext"; 
+import React, { useContext } from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { DataContext } from "../context/DataContext";
 
 export default function SectionBlog() {
-  const { data } = useContext(DataContext); 
+  const { data } = useContext(DataContext);
 
-  // Verificación para asegurarnos de que los datos están disponibles antes de acceder a ellos
   if (!data || !data.body) {
-    return <Typography variant="h6">Loading...</Typography>; // Mensaje de carga mientras se obtienen los datos
+    return <Typography variant="h6">Loading...</Typography>; 
   }
 
-  const cards = Object.values(data.body.posts); // Cambiado de posts a cards
+  const cards = Object.values(data.body.posts); 
 
   return (
-    <Box 
+    <Box
       sx={{
-        backgroundColor: "violet",
-        padding: "64px 16px", // Reducido para mobile y tablet
+        padding: { xs: "64px 16px", md: "120px 0px" }, 
         display: "flex",
         flexDirection: "column",
-        alignItems: "center", // Centra el contenido horizontalmente
-        justifyContent: "center", // Centra el contenido verticalmente
-        height: { xs: 'auto', md: '998px' }, // Altura fija en tablets y pantallas más grandes
-        overflow: 'hidden', // Evita desbordamientos
+        alignItems: "center", 
+        justifyContent: "center", 
+        height: { xs: "auto", md: "983px" }, 
+        overflow: "hidden", 
+        backgroundColor: "#F7F8F4",
+        boxSizing: "border-box",
       }}
     >
-      {/* Título */}
-      <Typography variant="h4" sx={{ textAlign: 'center', marginBottom: '20px' }}>
+      <Typography
+        variant="h4"
+        sx={{
+          textAlign: "center",
+          marginBottom: { xs: "32px", md: "72px" },
+          fontFamily: "'Red Hat Display', sans-serif",
+          fontSize: { xs: "28px", md: "40px" },
+          fontWeight: "bold",
+        }}
+      >
         {data.body.title}
       </Typography>
 
-      {/* Contenedor de tarjetas con Flexbox */}
       <Box
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap', // Permite que las tarjetas se ajusten en varias filas si es necesario
-          justifyContent: 'center', // Centra las tarjetas horizontalmente
-          gap: '20px', // Espaciado entre tarjetas
-          maxWidth: '1200px', // Limita el ancho máximo del contenedor para evitar desbordamiento
-          width: '100%', // Asegura que el contenedor no se desborde
-          margin: '0 auto', // Centra el contenedor horizontalmente
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center", 
+          gap: "20px",
+          rowGap: "32px", 
+          maxWidth: "1200px",
+          width: "100%", 
+          margin: "0 auto", 
         }}
       >
         {cards.map((card, index) => (
           <Box
             key={index}
             sx={{
-              width: { xs: '345px', md: '276px' }, // Ancho fijo para mobile (345px) y desktop (276px)
-              height: { xs: '356px', md: '486px' }, // Altura fija para mobile (356px) y desktop (486px)
-              borderRadius: '8px',
-              overflow: 'hidden',
-              boxShadow: 3,
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              boxSizing: 'border-box', // Asegura que el padding y el borde estén incluidos en el ancho/alto total
+              width: { xs: "345px", md: "276px" }, 
+              height: { xs: "356px", md: "486px" }, 
+              border: "none",
+              overflow: "hidden",
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              boxSizing: "border-box", 
             }}
           >
-            {/* Imagen con etiqueta de tipo */}
             <Box
               component="img"
               src={card.image}
               alt={card.title}
               sx={{
-                width: '100%',
-                height: '60%', // La imagen ocupa el 60% de la tarjeta
-                objectFit: 'cover',
+                width: "100%",
+                minHeight: { xs: "256px", md: " 362px" },
+                maxHeight: { md: "362px" },
+                minWidth: "345px",
+                maxWidth: { md: "276px" },
+                objectFit: "cover",
               }}
             />
             <Typography
               sx={{
-                position: 'absolute',
-                top: '10px',
-                left: '10px',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                color: 'white',
-                padding: '4px 8px',
-                fontSize: '12px',
-                borderRadius: '4px',
+                position: "absolute",
+                top: "10px",
+                left: "10px",
+                color: "white",
+                padding: "8px 12px",
+                fontSize: "10px",
+                borderRadius: "19px",
+                display: { xs: "none", md: "block" },
+                fontFamily: "'Red Hat Display', sans-serif",
+                backgroundColor: card.type === "Type A" ? "#189B5C" : "#F78BD8",
               }}
             >
-              {card.type}
+              Type Pill
             </Typography>
 
-            {/* Contenido debajo de la imagen */}
-            <Box sx={{ padding: '10px', display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
               {/* Fecha y Tipo */}
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-                <Typography sx={{ fontSize: '12px', color: 'gray' }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "8px",
+                  marginTop: "16px",
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: "#0F0F0F",
+                    fontFamily: "'Red Hat Display', sans-serif",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                  }}
+                >
                   {card.date}
                 </Typography>
                 <Box
                   sx={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    backgroundColor: 'green',
-                    margin: '0 8px',
+                    width: "7px",
+                    height: "7px",
+                    borderRadius: "50%",
+                    backgroundColor:
+                      card.type === "Type A" ? "#189B5C" : "#F78BD8",
+                    margin: "0 8px",
+                    display: { xs: "block", md: "none" },
                   }}
                 />
-                <Typography sx={{ fontSize: '12px', color: 'gray' }}>
+                <Typography
+                  sx={{
+                    color: "#0F0F0F",
+                    fontFamily: "'Red Hat Display', sans-serif",
+                    fontSize: { xs: "10px", md: "40px" },
+                    fontWeight: "bold",
+                    display: { xs: "block", md: "none" },
+                  }}
+                >
                   {card.type}
                 </Typography>
               </Box>
 
-              {/* Título */}
-              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                {card.title}
+              {/* description */}
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "'Work Sans', sans-serif",
+                  fontSize: "14px",
+                  fontWeight: "regular",
+                  lineHeight: "21px",
+                  color: "#0F0F0F",
+                }}
+              >
+                This is the title of the journal post lorem ipsum dolor sit
+                ameis is the title of the journal post lorem ipsum.
               </Typography>
             </Box>
           </Box>
         ))}
       </Box>
 
-      {/* Botón centralizado */}
-      <Box sx={{ textAlign: 'center', marginTop: '30px' }}>
-        <Button
-          variant="contained"
-          href={data.body.button_link}
-          sx={{
-            backgroundColor: 'green',
-            color: 'white',
-            padding: '8px 20px',
-            textTransform: 'none',
-          }}
-        >
-          {data.body.button_label}
-        </Button>
-      </Box>
+      <Button
+        variant="contained"
+        href={data.body.button_link}
+        sx={{
+          backgroundColor: "#189B5C",
+          color: "white",
+          padding: "16px 40px",
+          textTransform: "none",
+          borderRadius: 0,
+          fontFamily: "'Work Sans', sans-serif",
+          fontSize: "16px",
+          lineHeight: "28px",
+          letterSpacing: "0.5px",
+          marginTop: { xs: "32px", md: "96px" },
+          "&:hover": {
+            backgroundColor: "#F78BD8",
+          },
+        }}
+      >
+        {data.body.button_label}
+      </Button>
     </Box>
   );
 }

@@ -34,7 +34,7 @@ const Navbar = () => {
     setDrawerOpen(open);
   };
 
-  // Menú hamburguesa para móviles
+  // Burguer menu for mobile
   const drawer = (
     <Box
       sx={{ width: 250 }}
@@ -69,6 +69,7 @@ const Navbar = () => {
         justifyContent: "space-between",
         flexDirection: "row",
         boxSizing: "border-box",
+        backgroundColor: "#FFFFFF",
       }}
     >
       <Toolbar
@@ -99,17 +100,33 @@ const Navbar = () => {
         </Box>
 
         {/* Menu desktop */}
-        <Box sx={{ display: { xs: "none", md: "block",} }}>
+        <Box sx={{ display: { xs: "none", md: "block" } }}>
           {menuItems.map((item) => (
-            <Button key={item.text} color="inherit" 
-            sx={{ fontFamily: 'Work Sans, sans-serif', fontSize: '17px', marginLeft:"32px" }}>
+            <Button
+              key={item.text}
+              color="inherit"
+              sx={{
+                fontFamily: "Work Sans, sans-serif",
+                fontSize: "17px",
+                marginLeft: "32px",
+                textTransform: "none",
+              }}
+            >
               {item.text}
             </Button>
           ))}
         </Box>
 
         {/* Burguer menu  for mobile */}
-        <Box sx={{ display: { xs: "block", md: "none", width: "32px" } }}>
+        <Box
+          sx={{
+            display: {
+              xs: "block",
+              md: "none",
+              width: "32px",
+            },
+          }}
+        >
           <IconButton
             color="inherit"
             edge="end"

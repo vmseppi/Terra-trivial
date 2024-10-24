@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const DataContext = createContext();
 
-// Provder
+// Provider
 export const DataProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
