@@ -6,21 +6,20 @@ export default function SectionBlog() {
   const { data } = useContext(DataContext);
 
   if (!data || !data.body) {
-    return <Typography variant="h6">Loading...</Typography>; 
+    return <Typography variant="h6">Loading...</Typography>;
   }
 
-  const cards = Object.values(data.body.posts); 
+  const cards = Object.values(data.body.posts);
 
   return (
     <Box
       sx={{
-        padding: { xs: "64px 16px", md: "120px 0px" }, 
+        padding: { xs: "64px 16px", md: "120px 0px" },
         display: "flex",
         flexDirection: "column",
-        alignItems: "center", 
-        justifyContent: "center", 
-        height: { xs: "auto", md: "983px" }, 
-        overflow: "hidden", 
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
         backgroundColor: "#F7F8F4",
         boxSizing: "border-box",
       }}
@@ -42,26 +41,26 @@ export default function SectionBlog() {
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "center", 
+          justifyContent: "center",
           gap: "20px",
-          rowGap: "32px", 
+          rowGap: "32px",
           maxWidth: "1200px",
-          width: "100%", 
-          margin: "0 auto", 
+          width: "100%",
+          margin: "0 auto",
         }}
       >
         {cards.map((card, index) => (
           <Box
             key={index}
             sx={{
-              width: { xs: "345px", md: "276px" }, 
-              height: { xs: "356px", md: "486px" }, 
+              width: { xs: "345px", md: "276px" },
+              height: { xs: "356px", md: "486px" },
               border: "none",
               overflow: "hidden",
               position: "relative",
               display: "flex",
               flexDirection: "column",
-              boxSizing: "border-box", 
+              boxSizing: "border-box",
             }}
           >
             <Box
