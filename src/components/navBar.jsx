@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { AppBar, Toolbar, Box, useMediaQuery, useTheme } from "@mui/material";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import { height, width } from "@mui/system";
 import logoMobile from "../assets/logo_mobile.png";
 import logoDesktop from "../assets/logo_desktop.png";
 import burguer from "../assets/burguer.png";
@@ -83,7 +80,7 @@ const Navbar = () => {
           minHeight: "60px",
           padding: {
             sm: "20px 15px 20px 30px",
-            md: "16px 32px",
+            md: "26px 124px 26px 45px",
           },
           boxSizing: "border-box",
         }}
@@ -102,9 +99,10 @@ const Navbar = () => {
         </Box>
 
         {/* Menu desktop */}
-        <Box sx={{ display: { xs: "none", md: "block" } }}>
+        <Box sx={{ display: { xs: "none", md: "block",} }}>
           {menuItems.map((item) => (
-            <Button key={item.text} color="inherit">
+            <Button key={item.text} color="inherit" 
+            sx={{ fontFamily: 'Work Sans, sans-serif', fontSize: '17px', marginLeft:"32px" }}>
               {item.text}
             </Button>
           ))}

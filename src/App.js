@@ -1,10 +1,14 @@
 import React from "react";
+import "../src/index.css";
 import { Container } from "@mui/material";
+import { DataProvider } from '../src/context/DataContext';
 import Navbar from "./components/navBar";
+import SeccionOne from "./components/seccionOne";
 
 function App() {
   return (
-    <Container
+    <DataProvider> 
+      <Container
       sx={{
         maxWidth: { xs: "100%", md: 1440 },
         minWidth: 375,
@@ -15,7 +19,9 @@ function App() {
       }}
     >
       <Navbar />
+      <SeccionOne/>
     </Container>
+    </DataProvider>
   );
 }
 
