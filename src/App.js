@@ -4,6 +4,7 @@ import { Container } from "@mui/material";
 import { DataProvider } from '../src/context/DataContext';
 import Navbar from "./components/navBar";
 import SeccionOne from "./components/seccionOne";
+import SeccionBlog from "./components/sectionBlog";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
     >
       <Navbar />
       <SeccionOne/>
+      <SeccionBlog/>
     </Container>
     </DataProvider>
   );

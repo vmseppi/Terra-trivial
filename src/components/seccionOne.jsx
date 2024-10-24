@@ -3,8 +3,11 @@ import { Box, Button, Typography } from "@mui/material";
 import { DataContext } from "../context/DataContext"; 
 
 const SeccionOne = () => {
-  const { data, loading, error } = useContext(DataContext); 
+  const { data } = useContext(DataContext); 
   const [isFirstVisit, setIsFirstVisit] = useState(null); 
+
+  // Verificación de si los datos están llegando correctamente
+  console.log('Datos de contexto:', data);
 
   useEffect(() => {
     const checkVisit = () => {
@@ -26,16 +29,16 @@ const SeccionOne = () => {
     }
   }, [isFirstVisit]);
 
-  // loader waiting the data
-  if (loading || !data || !data.hero) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  // Validación para evitar errores si `data` no está disponible
+  if (!data || !data.hero) {
+    return <Typography variant="h6">Loading...</Typography>;
+  }
 
-
-    const titleText = isFirstVisit
+  const titleText = isFirstVisit
     ? data.hero.title.first_time_accessing 
     : data.hero.title.second_time_accessing;
 
-    const subtitleText = isFirstVisit
+  const subtitleText = isFirstVisit
     ? data.hero.subtitle
     : data.hero.subtitle;
 
@@ -70,7 +73,7 @@ const SeccionOne = () => {
           fontSize: { xs: "46px", md: "65px" },
         }}
       >
-         {titleText}
+        {titleText}
       </Typography>
 
       {/* Subtítulo */}
@@ -85,7 +88,7 @@ const SeccionOne = () => {
           marginTop: 2,
         }}
       >
-         {subtitleText}
+        {subtitleText}
       </Typography>
 
       {/* Botón */}
